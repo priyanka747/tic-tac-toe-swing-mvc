@@ -1,5 +1,9 @@
 package tictactoe.model;
-
+/**
+ * 
+ * @author pthakker
+ *
+ */
 public interface IPlayerModel {
 	public int getScore();
 	public void setScore(int score);
@@ -10,4 +14,6 @@ public interface IPlayerModel {
 	public boolean isActive();
 	public void setIsActive(boolean isActive);
 	public void reset();
+
+	public boolean isAuto();
 }

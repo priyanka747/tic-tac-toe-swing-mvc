@@ -1,0 +1,8 @@
+chkWinPosibility
+chkOppWin
+
+this both function used for ai moves
+poth returns the point(i.e position x,y)
+put the logic that next step is won by computer or not if computer is not winning than 
+chk if oppnents next move will win him if yes thn stop him 
+the functions were called at place where needed just make them happen

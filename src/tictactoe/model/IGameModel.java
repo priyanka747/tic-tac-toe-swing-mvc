@@ -1,6 +1,10 @@
 package tictactoe.model;
 
-
+/**
+ * 
+ * @author pthakker
+ *
+ */
 public interface IGameModel {
 	public int getHighScore();
 	public void setHighScore(int highScore);
@@ -17,5 +21,10 @@ public interface IGameModel {
 	void startGame(String player1, String player2);
 	void startGame(IPlayerModel player);
 	public void changePlayer();
-	public  void countMoves() ;
+	public  int countMoves();
+	public IPlayerModel getPlayer1();
+	public IPlayerModel getPlayer2();
+	public boolean isAuto();
+	public boolean setHighscore(int i);
+	public int getHighscore();
 }

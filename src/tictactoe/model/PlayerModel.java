@@ -1,11 +1,21 @@
 package tictactoe.model;
-
+/**
+ * 
+ * @author pthakker
+ *
+ */
 public class PlayerModel implements IPlayerModel {
 	private String name;
+	private boolean isAuto=false;
 	private String PlayerSign;
 	private int score;
 	private boolean isActive;
 	
+	public PlayerModel(boolean isComputer) {
+		if(isComputer) {
+			isAuto=true;
+		}
+	}
 	@Override
 	public int getScore() {
 		return score;
@@ -50,5 +60,15 @@ public class PlayerModel implements IPlayerModel {
 	public void reset() {
 		score=0;
 	}
+	/**
+	 * @return the isAuto
+	 */
+	public boolean isAuto() {
+		return isAuto;
+	}
+	/**
+	 * @param isAuto the isAuto to set
+	 */
+	
 
 }

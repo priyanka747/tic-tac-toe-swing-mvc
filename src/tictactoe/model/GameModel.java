@@ -1,15 +1,27 @@
 package tictactoe.model;
 
-
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+/**
+ * 
+ * @author pthakker
+ *
+ */
 public class GameModel implements IGameModel {
 	private int highScore;
 	private boolean gameOver=false;
 	private String board[][]=new String[3][3];
 	IPlayerModel player1,player2;
 
+	private final static String path="highscore.txt";
+
 	public GameModel(IPlayerModel player1, IPlayerModel player2) {
 		this.player1=player1;
 		this.player2=player2;
+		getHighscore();
 	}
 
 	@Override
@@ -96,7 +108,7 @@ public class GameModel implements IGameModel {
 
 	}
 	@Override
-	public void countMoves() {
+	public int countMoves() {
 		int cnt=0;
 		for(int i=0;i<3;i++) {
 			for(int j=0;j<3;j++) {
@@ -107,6 +119,7 @@ public class GameModel implements IGameModel {
 		}
 		if(cnt<=0)
 			gameOver=true;
+		return cnt;
 	}
 
 	@Override
@@ -126,4 +139,58 @@ public class GameModel implements IGameModel {
 			}
 		}
 	}
+
+	@Override
+	public IPlayerModel getPlayer1() {
+		// TODO Auto-generated method stub
+		return player1;
+	}
+
+	@Override
+	public IPlayerModel getPlayer2() {
+		// TODO Auto-generated method stub
+		return player2;
+	}
+
+	@Override
+	public boolean isAuto() {
+		return(player2.isAuto()?true:false);
+	}
+
+	@Override
+	public boolean setHighscore(int hs) {
+		if(highScore<hs) {
+		try(PrintWriter out=new PrintWriter(path)){
+			
+				out.println(hs);
+				return true;
+				
+		}
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		}
+		return false;
+	}
+
+	@Override
+	public int getHighscore() {
+
+		try (BufferedReader br =new BufferedReader(new FileReader(path))){
+//			FileReader fr =new FileReader(path);
+//		BufferedReader br =new BufferedReader(fr);
+			String line="";
+			
+			while((line=br.readLine())!=null) {
+				highScore=Integer.parseInt(line);
+				System.out.println(line);
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return highScore;
+	}
+	
 }
